@@ -1,0 +1,150 @@
+
+/* @group Head */
+
+#head h1 {
+	background: transparent url(../imatges/head-logo.png) no-repeat left top;
+	width: 214px;
+	height: 3.7em;
+	float: left;
+	margin-top: 0px;
+  	margin-bottom: 0px;
+}
+/* @Modificado */
+h1 a {
+display: block;
+width: 214px;
+height: 3.7em;
+}
+
+h1 a:hover {
+background-color: transparent;
+}
+/* @end */
+
+#head .tools {
+	position: absolute;
+	right: 30px;
+	margin-top: 4px;
+	font-size: 1.2em;
+	z-index: 1000;
+}
+
+/* @end */
+
+.stripedTable1{
+	background-color: #FFFFFF;
+}
+
+.stripedTable2{
+	background-color: #DFECF9;
+}
+
+#main ul li{
+	padding: 0;
+}
+
+@media only screen and (max-width: 667px){
+	.usuariResponsive{
+		margin-right:-25px;
+		font-size: 7pt;
+		font-weight: normal;
+	}
+	
+	.logoResponsive{
+		margin-left:-30px
+	}
+}
+
+@media only screen and (min-width: 667px){
+	.logoResponsive{
+		margin-left:-10px;
+	}
+}
+
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+ 
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+ 
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+ 
+.glyphicon-left {
+    margin-right: 7px;
+}
+
+legend{
+	width: auto;
+	border-bottom: none;
+}
+
+.baseform legend span{
+	height: 22px;
+	margin-left: -1px;	
+}
+
+.baseform legend{
+	height: 23px;
+	margin: -24px 10px 0 0;
+}
+
+.tipus-fieldset {
+	background: #dfebf9 url(/commons-resources/imatges/fieldset-back.gif) repeat-x top left;
+	list-style: none;
+	list-style-type: none;
+	padding: 10px;
+	border-top: 1px solid #8abdee;
+	display:block;
+}
+.tipus-header {
+	background-color:#9ABFE9;
+}
+.modal {
+    overflow-y: auto;
+}
+.accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: grey;         /* adjust as needed */
+}
+.accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+}
+.tipus-linia {
+	margin-right:10px;
+	margin-top:5px; 
+	float:left;
+}
+.tipus-resum {
+	border: 0px;
+	background-image:none;
+	background-color:transparent;
+}
+.tipus-resum thead {
+	background-color:transparent;
+}
+.tipus-resum thead tr th {
+	border-bottom:0px;
+}
+.tipus-resum tbody tr td {
+	border-top:0px;
+}
+.tipus-resum th {
+	background-image:none;
+	border:0px;
+	color:black;
+}
+.tipus-resum td {
+	border:0px;
+	color:black;
+}
