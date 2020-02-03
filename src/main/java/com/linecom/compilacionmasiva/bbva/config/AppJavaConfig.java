@@ -16,6 +16,7 @@ import com.linecom.compilacionmasiva.bbva.logging.ExceptionWriter;
 @Configuration
 public class AppJavaConfig {
 	
+	@Lazy
     @Autowired 
     SpringFXMLLoader springFXMLLoader;
 

@@ -1,5 +1,7 @@
 package com.linecom.compilacionmasiva.bbva.service;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,11 +13,13 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.linecom.compilacionmasiva.bbva.config.StageManager;
 import com.linecom.compilacionmasiva.bbva.dao.DesGrupoFuncionalRepository;
 import com.linecom.compilacionmasiva.bbva.dao.DesGruposFuncPaqueteRepository;
 import com.linecom.compilacionmasiva.bbva.dao.DesPaqueteRepository;
@@ -50,6 +54,7 @@ public class CompMassService {
 	private static final String ICC_ASSEGU = "ICC-ASSEGU";
 	private static final String SIAS = "SIAS";
 	private static final String RESTO = "RESTO";
+	private static final Logger LOG = getLogger(CompMassService.class);
 
 	@PersistenceContext
 	private EntityManager em;
@@ -85,57 +90,26 @@ public class CompMassService {
 
 	@Transactional(readOnly = false)
 	public void carregarPaquetsACompilar() {
-		String sqltst = "Select tgfe.entidad as entidad,tgfe.entorno as entorno,dgf.nombre_grupo_funcional as nombreGrupoFuncional, 11406 as usuario,dgf.tipo_grupo_funcional as tipoGrupoFuncional," +
-				"vgf.version as version, vgf.revision as revision, dfu.fuente as fuente,dfu.tipo_fuente as tipoFuente,sysdate as fechaHoraPeticion,0 as resultadoCompilacion," +
-				"null as fechaHoraUltimoEstado,null as ficheroFuente, null as resultado, 'S' as compFullCheckSn,0 as paquete " + 
-				"from des_grupo_funcional dgf  " + 
-				"left join des_funciones df on df.nombre_grupo_funcional = dgf.nombre_grupo_funcional " + 
-				"left join des_fuentes dfu on dfu.nombre_grupo_funcional = dgf.nombre_grupo_funcional " + 
-				"left join TIC_GRUPO_FUNCIONAL_ENTORNOS tgfe on tgfe.nombre_grupo_funcional =  dgf.nombre_grupo_funcional and tgfe.entorno in ('ETIC','PRODUCCIO') " + 
-				"left join des_versiones_gf vgf on vgf.NOMBRE_GRUPO_FUNCIONAL = dgf.nombre_grupo_funcional " + 
-				"where dgf.tipo_grupo_funcional in (1,2,3,5) " + 
-				"and tgfe.entorno is not null " + 
-				"and dfu.tipo_fuente = 'COB' " + 
-				"and (df.grupo_funcional_fuente = df.nombre_grupo_funcional or df.nombre_grupo_funcional is null)  " + 
-				"and vgf.nombre_grupo_funcional = dgf.nombre_grupo_funcional  " + 
-				"and vgf.estado is null  " + 
-				"and (vgf.fecha_estado = " + 
-				"		(select max(fecha_estado) from " + 
-				"				   des_versiones_gf " + 
-				"		  where " + 
-				"				   nombre_grupo_funcional = " + 
-				"				   dgf.nombre_grupo_funcional and " + 
-				"				   estado is null) " + 
-				"		  or " + 
-				"				  vgf.version*100+vgf.revision = " + 
-				"				 (select max(version*100+revision) from " + 
-				"						 des_versiones_gf " + 
-				"				  Where  " + 
-				"						 nombre_grupo_funcional = dgf.nombre_grupo_funcional and " + 
-				"						 estado is null) " + 
-				") " + 
-				"order by dgf.nombre_grupo_funcional desc";
-		
-		//TODO: FICHERO FUENTE???
 		@SuppressWarnings("unchecked")
-		List<TicCompilacionesMasiva> resultat = em.createNativeQuery(sqltst,"paquetsCompilar").getResultList();
-		HashSet<String> nmsGrupFuncional = new HashSet<String>(); 
-//		em.getTransaction().begin();
+		List<TicCompilacionesMasiva> resultat = em.createNativeQuery(sqlPaquetsACompilar,"paquetsCompilar").getResultList();
+		HashSet<String> nmsGrupFuncional = new HashSet<String>();
+		LOG.info("Registros a TIC_COMPILACIONES_MASIVA");
 		for (TicCompilacionesMasiva elementAGuardar : resultat) {
 			//Evitem guardar registres que no utilitzarem i que poden donar conflicte
 			boolean afegit = nmsGrupFuncional.add(elementAGuardar.getTicCompilacionesId().getNombreGrupoFuncional());
 			if (afegit) {
 				em.persist(elementAGuardar);
 				em.flush();
-				em.clear();	
+				em.clear();
+				LOG.debug("TIC_COMPILACIONES_MASIVA:" + elementAGuardar.getTicCompilacionesId().getNombreGrupoFuncional());
 			}
 		}
-//		em.getTransaction().commit();
 	}
 	
 	@Transactional(readOnly = false)
 	public void eliminarTicCompilacioMassiva() {
 		em.createQuery("DELETE FROM TicCompilacionesMasiva").executeUpdate();	
+		LOG.info("Eliminados registros de TIC_COMPILACIONES_MASIVA");
 	}
 	
 	@Transactional(readOnly = false)
@@ -145,51 +119,50 @@ public class CompMassService {
 		//Només 1 per nombre_grupo_funcional
 		HashSet<String> nmsGrupFuncional = new HashSet<String>();
 		List<TicCompilaciones> ticCompilacionesMasivaAdaptat = new ArrayList<TicCompilaciones>();
+		LOG.info("Carga de datos a TIC_COMPILACIONES");
 		for (TicCompilacionesMasiva ticCompMasiva : ticCompilacionesMasiva) {
 			boolean afegit = nmsGrupFuncional.add(ticCompMasiva.getTicCompilacionesId().getNombreGrupoFuncional());
 			if (afegit) {
-				//Si el camp entorno es PRODUCCIO, el canviem per DESENVOLUPAMENT
-				//El camp entidad s'estableix a 9999
-				TicCompilaciones ticComp = new TicCompilaciones();
-				ticComp = copiarValors(ticCompMasiva);
-				ticComp.getTicCompilacionesId().setEntidad(ENTIDAD_9999);
-				if (ticCompMasiva.getTicCompilacionesId().getEntorno().equalsIgnoreCase(PRODUCCIO)) {
-					ticComp.getTicCompilacionesId().setEntorno(DESENVOLUPAMENT);
-				}
-				
-				//Si existeix
-				//	Si Versio i Revisió a TIC_COMPILACIONES es major, no es guarda (primer check versió, després la revisió de la versió)
-				//	Si Versio i Revisió a TIC_COMPILACIONES es menor, s'elimina de TIC_COMPILACIONES es guarda (primer check versió, després la revisió de la versió)
-				//Si no existeix
-				//	guardar
-				TicCompilacionesId id = ticComp.getTicCompilacionesId();
-				Optional<TicCompilaciones> resultat = ticCompilacionesRepository.findById(id);
-				if (resultat.isPresent()) {
-					if (ticComp.getVersion().compareTo(resultat.get().getVersion()) == 0) {
-						if (ticComp.getRevision().compareTo(resultat.get().getVersion()) >= 0) {
-							ticCompilacionesRepository.saveAndFlush(ticComp);	
-						} else {
-							continue;
-						}
-					} else if (ticComp.getVersion().compareTo(resultat.get().getVersion()) > 0){
-						ticCompilacionesRepository.saveAndFlush(ticComp);
-					} else {
-						continue;	
+				try {
+					//Si el camp entorno es PRODUCCIO, el canviem per DESENVOLUPAMENT
+					//El camp entidad s'estableix a 9999
+					TicCompilaciones ticComp = new TicCompilaciones();
+					ticComp = copiarValors(ticCompMasiva);
+					ticComp.getTicCompilacionesId().setEntidad(ENTIDAD_9999);
+					if (ticCompMasiva.getTicCompilacionesId().getEntorno().equalsIgnoreCase(PRODUCCIO)) {
+						ticComp.getTicCompilacionesId().setEntorno(DESENVOLUPAMENT);
 					}
-				} else {
-					ticCompilacionesRepository.saveAndFlush(ticComp);
+					
+					//Si existeix
+					//	Si Versio i Revisió a TIC_COMPILACIONES es major, no es guarda (primer check versió, després la revisió de la versió)
+					//	Si Versio i Revisió a TIC_COMPILACIONES es menor, s'elimina de TIC_COMPILACIONES es guarda (primer check versió, després la revisió de la versió)
+					//Si no existeix
+					//	guardar
+					TicCompilacionesId id = ticComp.getTicCompilacionesId();
+					Optional<TicCompilaciones> resultat = ticCompilacionesRepository.findById(id);
+					if (resultat.isPresent()) {
+						if (ticComp.getVersion() != null && ticComp.getVersion().compareTo(resultat.get().getVersion()) == 0) {
+							if (ticComp.getRevision() == null || ticComp.getRevision().compareTo(resultat.get().getRevision()) >= 0) {
+								ticCompilacionesRepository.saveAndFlush(ticComp);	
+							} else {
+								continue;
+							}
+						} else if (ticComp.getVersion() == null || ticComp.getVersion().compareTo(resultat.get().getVersion()) > 0){
+							ticCompilacionesRepository.saveAndFlush(ticComp);
+							LOG.debug("TIC_COMPILACIONES: " + ticComp.getTicCompilacionesId().getNombreGrupoFuncional() + " (UPDATE)");
+						} else {
+							continue;	
+						}
+					} else {
+						ticCompilacionesRepository.saveAndFlush(ticComp);
+						LOG.debug("TIC_COMPILACIONES: " + ticComp.getTicCompilacionesId().getNombreGrupoFuncional() + (" (NEW)"));
+					}
+					ticCompilacionesMasivaAdaptat.add(ticComp);
+				} catch (Exception ex) {
+					LOG.error("Error al actualitzar les dades a TIC_COMPILACIONES" + ex);
 				}
-				ticCompilacionesMasivaAdaptat.add(ticComp);
 			}
 		}
-		//Sense transaction?? (1 a 1)??
-//		em.getTransaction().begin();
-//		for (TicCompilaciones elementAGuardar : ticCompilacionesMasivaAdaptat) {
-//			em.persist(elementAGuardar);
-//			em.flush();
-//			em.clear();
-//		}
-//		em.getTransaction().commit();
 	}
 	
 	private TicCompilaciones copiarValors(TicCompilacionesMasiva ticCompMasiva) {
@@ -225,6 +198,7 @@ public class CompMassService {
 		//Ara s'agafa el de versio i revisio mes alt
 		List<TicCompilacionesMasiva> ticCompilacionesMasiva = ticCompilacionesMasivaRepository.findAll();
 		List<TicCompilacionesMasiva> ticCompilacionesMasivaActualitzat = new ArrayList<TicCompilacionesMasiva>();
+		LOG.info("Actualizando registros TIC_COMPILACIONES_MASIVA");
 		//Obtenim elements a actualitzar
 		for (TicCompilacionesMasiva ticCompilaMas : ticCompilacionesMasiva) {
 			List<TicCompilaciones> lstTicCompilaciones = ticCompilacionesRepository.findByNombreGrupoFuncionalAndVersionAndRevisionOrderByVersionDescAndRevisionDesc(
@@ -237,9 +211,12 @@ public class CompMassService {
 					ticCompilaMas.setResultado(ticCompilaciones.getResultado());
 					ticCompilacionesMasivaRepository.saveAndFlush(ticCompilaMas);
 					ticCompilacionesMasivaActualitzat.add(ticCompilaMas);	
+					LOG.debug("TIC_COMPILACIONES_MASIVA: " + ticCompilaciones.getTicCompilacionesId().getNombreGrupoFuncional() + " (UPDATE)");
+					
 				}
 			}
 		}
+		LOG.info("Actualizados registros TIC_COMPILACIONES_MASIVA");
 		return ticCompilacionesMasivaActualitzat;
 	}
 
@@ -273,13 +250,14 @@ public class CompMassService {
 		String nomAplicacio = "";
 		Set<String> nomsGrupoFuncional = new HashSet<String>();
 		int numPaquetes = 0;
+		LOG.info("Generando paquetes...");
 		for (TicCompilacionesMasiva ticCompMasiva : ticCompilacionesMasiva) {
 			boolean nouElement = nomsGrupoFuncional.add(ticCompMasiva.getTicCompilacionesId().getNombreGrupoFuncional());
 			if (nouElement) {
-				Optional<DesGrupoFuncional> dgf = desGrupoFuncionalRepository.findById(ticCompMasiva.getTicCompilacionesId().getNombreGrupoFuncional());
+				List<DesGrupoFuncional> dgf = desGrupoFuncionalRepository.findByNombreGrupoFuncional(ticCompMasiva.getTicCompilacionesId().getNombreGrupoFuncional());
 				String nomApp = "";
-				if (dgf.isPresent()) {
-					nomApp = dgf.get().getAplicacion();
+				if (!dgf.isEmpty()) {
+					nomApp = dgf.get(0).getAplicacion();
 				}
 				nomAplicacio = obtenirNomAplicacio(nomApp.toUpperCase());
 				//Afegir registre a DES_PAQUETES
@@ -295,9 +273,11 @@ public class CompMassService {
 				//Afegir registre a TIC_GRUPOS_FUNC_ENTIDAD
 				TicGruposFuncEntidad ticGruposFuncEntidad = omplirDadesTicGruposFuncEntidad(idPaquete,ticCompMasiva);
 				ticGruposFuncEntidadRepository.saveAndFlush(ticGruposFuncEntidad);
+				LOG.debug("Paquete(" + numPaquetes + ")" + ticCompMasiva.getTicCompilacionesId().getNombreGrupoFuncional() + " generado");
 				numPaquetes++;
 			}
 		}
+		LOG.info(numPaquetes + " paquetes generados");
 		return numPaquetes;
 	}
 
@@ -320,6 +300,7 @@ public class CompMassService {
 		ticGruposFuncEntidad.setTipoFuente(ticCompMasiva.getTipoFuente());
 		ticGruposFuncEntidad.setTipoGrupoFuncional(ticCompMasiva.getTipoGrupoFuncional());
 		ticGruposFuncEntidad.setVersion(ticCompMasiva.getVersion());
+		ticGruposFuncEntidad.setEstadoSistema(new BigDecimal(3));
 		return ticGruposFuncEntidad;
 	}
 
@@ -336,7 +317,7 @@ public class CompMassService {
 		ticPaquetesEntidadId.setEntidad(entidad);
 		ticPaquetesEntidadId.setPaquete(idPaquete);
 		ticPaquetesEntidad.setTicPaquetesEntidadId(ticPaquetesEntidadId );
-		ticPaquetesEntidad.setUsuario(new BigDecimal(usuari)); //TODO: PROPERTIES
+		ticPaquetesEntidad.setUsuario(new BigDecimal(usuari)); 
 		return ticPaquetesEntidad;
 	}
 
@@ -349,13 +330,12 @@ public class CompMassService {
 		desGruposFuncPaqueteId.setPaquete(idPaquete);
 		desGruposFuncPaquete.setDesGruposFuncPaqueteId(desGruposFuncPaqueteId );
 		desGruposFuncPaquete.setRevision(ticCompMasiva.getRevision());
-		desGruposFuncPaquete.setUsuario(new BigDecimal(usuari));//TODO: PPROPERTIES!!!
+		desGruposFuncPaquete.setUsuario(new BigDecimal(usuari));
 		desGruposFuncPaquete.setVersion(ticCompMasiva.getVersion());
 		return desGruposFuncPaquete;
 	}
 
 	private DesPaquete omplirDadesDesPaquete(String nomProjecte, String nomAplicacio, BigDecimal tipoGrupoFuncional, BigDecimal entidad) {
-		// TODO seq_paquetes??
 		DesPaquete desPaquete = new DesPaquete();
 		String nom = "";
 		String descripcio = "";
@@ -381,11 +361,11 @@ public class CompMassService {
 		desPaquete.setFicheroInstalacion(null);
 		desPaquete.setGrupoDesarrollo("Sistemes ct*");
 		desPaquete.setNombrePaquete(nom);
-//		desPaquete.setPaquete(seq??);
 		desPaquete.setPublicoSn("N");
 		desPaquete.setSimpleSn("N");
 		desPaquete.setTipoFicheroInstalacion("");
-		desPaquete.setUsuario(new BigDecimal(usuari));//TODO: PER .properties
+		desPaquete.setUsuario(new BigDecimal(usuari));
+		desPaquete.setEstadoPaquete(new BigDecimal(1));
 		
 		return desPaquete;
 	}

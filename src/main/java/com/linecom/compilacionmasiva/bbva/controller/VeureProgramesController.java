@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.SelectionMode;
 
 import java.io.FileOutputStream;
@@ -34,6 +35,7 @@ import com.linecom.compilacionmasiva.bbva.service.CompMassService;
 import com.linecom.compilacionmasiva.bbva.view.FxmlView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.scene.control.CheckBox;
 import javafx.util.Callback;
 import javafx.scene.control.TableCell;
@@ -65,6 +67,8 @@ public class VeureProgramesController implements Initializable{
 	@Autowired
 	private CompMassService compMassService;
 	
+	private ProgressIndicator progress;
+	
 	private ObservableList<VistaTicCompilacionesMasiva> observableList = FXCollections.<VistaTicCompilacionesMasiva>observableArrayList();;
 	
 	@FXML
@@ -92,8 +96,26 @@ public class VeureProgramesController implements Initializable{
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		ticCompilacionesMasivaTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		crearTaula();
+		progress = new ProgressIndicator();
+		ticCompilacionesMasivaTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		lblResultat.setText("Cargando resultados...");
+		observableList.clear();
+		Task<Void> tasca = new Task<Void>() { 
+			@Override
+			protected Void call() throws Exception {
+				crearTaula();
+				return null;
+			}	
+		};
+		tasca.setOnRunning((e) -> vBoxCenter.getChildren().add(progress));
+		tasca.setOnSucceeded((e) -> {
+			lblResultat.setText("Cargados " + observableList.size() + " resultados");
+			vBoxCenter.getChildren().remove(progress);
+		});
+		tasca.setOnFailed((e) ->lblResultat.setText("Error:Existen datos en la tabla TIC_COMPILACIONES_MASIVA"));
+		progress.setMaxSize(50, 50);
+		new Thread(tasca).start();
+		
 		CheckBox checkBox1 = new CheckBox("Ver solo resultado de error");
 		checkBox1.selectedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
@@ -111,7 +133,7 @@ public class VeureProgramesController implements Initializable{
 	@SuppressWarnings("unchecked")
 	private void crearTaula() {
 		ticCompilacionesMasivaTable.getItems().clear();
-		compMassService.actualitzarTicCompilacioMassiva();
+//		compMassService.actualitzarTicCompilacioMassiva();
 		observableList.addAll(obtenirLlistatTaula(null));
 		ticCompilacionesMasivaTable.getItems().addAll(observableList);
 		TableColumn<VistaTicCompilacionesMasiva,String> colGrupoFuncional = new TableColumn<>("Grupo Funcional");

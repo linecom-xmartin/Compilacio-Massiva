@@ -1,13 +1,18 @@
 package com.linecom.compilacionmasiva.bbva.controller;
 
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -23,6 +28,9 @@ public class ObtenirProgramesController implements Initializable{
 	@FXML
     private Label lblResultat;
 	
+	@FXML
+	private Button btnIniciar;
+	
 	@Lazy
     @Autowired
     private StageManager stageManager;
@@ -30,10 +38,15 @@ public class ObtenirProgramesController implements Initializable{
 	@Autowired
 	private CompMassService compMassService;
 	
+	private ProgressIndicator progress;
+	
 	@FXML
 	private void exit(ActionEvent event) {
 		Platform.exit();
     }
+	
+	@FXML
+	private VBox vBoxCenter;
 
     @FXML
     private void loadViewVerProgramas(ActionEvent event) throws IOException {
@@ -53,10 +66,23 @@ public class ObtenirProgramesController implements Initializable{
     	try {
     		long numResultats = compMassService.obtenirTotalTicCompilacioMassivaPerResultatCompilacio(null);
     		lblResultat.setText("Copiando datos...");
+    		Task<Void> tasca = new Task<Void>() { 
+				@Override
+				protected Void call() throws Exception {
+					compMassService.carregarPaquetsACompilar();
+					return null;
+				}	
+			};
+			tasca.setOnRunning((e) -> vBoxCenter.getChildren().add(progress));
+			tasca.setOnSucceeded((e) -> {
+				long numResultatsSucceded = compMassService.obtenirTotalTicCompilacioMassivaPerResultatCompilacio(null);
+				lblResultat.setText("Se han copiado correctamente "+ numResultatsSucceded + " registros.");
+				vBoxCenter.getChildren().remove(progress);
+			});
+			tasca.setOnFailed((e) ->lblResultat.setText("Error:Existen datos en la tabla TIC_COMPILACIONES_MASIVA"));
+			progress.setMaxSize(50, 50);
     		if (numResultats == 0) {
-    			compMassService.carregarPaquetsACompilar();
-    			numResultats = compMassService.obtenirTotalTicCompilacioMassivaPerResultatCompilacio(null);
-    			lblResultat.setText("Se han copiado correctamente "+ numResultats + " registros.");
+    			new Thread(tasca).start();
     		} else {
     			lblResultat.setText("Error:Existen datos en la tabla TIC_COMPILACIONES_MASIVA");
     		}
@@ -68,6 +94,7 @@ public class ObtenirProgramesController implements Initializable{
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		progress = new ProgressIndicator();
 		long numResultats = compMassService.obtenirTotalTicCompilacioMassivaPerResultatCompilacio(null);
 		if (numResultats > 0) {
 			lblResultat.setText("Error:Existen datos en la tabla TIC_COMPILACIONES_MASIVA");

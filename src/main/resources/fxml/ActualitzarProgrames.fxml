@@ -150,7 +150,7 @@
       </VBox>
    </left>
    <center>
-      <VBox fx:id="vBoxCenter" alignment="TOP_RIGHT" prefHeight="571.0" prefWidth="692.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="vBoxCenter" alignment="TOP_CENTER" prefHeight="571.0" prefWidth="692.0" BorderPane.alignment="CENTER">
          <children>
             <TableView fx:id="ticCompilacionesMasivaResumTable" prefHeight="300.0" prefWidth="650.0" tableMenuButtonVisible="true">
                <VBox.margin>

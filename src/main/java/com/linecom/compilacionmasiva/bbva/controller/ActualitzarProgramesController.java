@@ -4,12 +4,14 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.SelectionMode;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
@@ -35,14 +38,16 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
-import javafx.animation.Timeline;
-import javafx.animation.KeyFrame;
 import javafx.util.Duration;
-import javafx.animation.Animation.Status;
+import javafx.concurrent.ScheduledService;
+import javafx.concurrent.Task;
+import javafx.concurrent.Worker.State;
 
 @SuppressWarnings("restriction")
 @Controller
 public class ActualitzarProgramesController implements Initializable{
+	
+	private static final Logger LOG = getLogger(ActualitzarProgramesController.class);
 	@FXML
     private Label lblResultat;
 	
@@ -58,6 +63,9 @@ public class ActualitzarProgramesController implements Initializable{
 	@FXML
 	private VBox vBoxCenter;
 	
+	private ProgressIndicator progress;
+	
+	
 	@Lazy
     @Autowired
     private StageManager stageManager;
@@ -65,13 +73,30 @@ public class ActualitzarProgramesController implements Initializable{
 	@Autowired
 	private CompMassService compMassService;
 	
-	private Timeline timeline;
-	
 	private ObservableList<ResumTicCompilacionesMasiva> observableList = FXCollections.<ResumTicCompilacionesMasiva>observableArrayList();
+	
+	 ScheduledService<Void> svc = new ScheduledService<Void>() {
+			@Override
+	        protected Task<Void> createTask() {
+				Task<Void> tasca = new Task<Void>() { 
+					@Override
+					protected Void call() throws Exception {
+						compMassService.actualitzarTicCompilacioMassiva();
+						actualitzarTaula();
+						return null;
+					}	
+				};
+				return tasca;
+	        }
+		};
 	
 	@Autowired
 	@Value("${usuario.filtro}")
 	private String usuari;
+	
+	@Autowired
+	@Value("${segundos.actualizar}")
+	private String segundosActualizar;
 	
 	@FXML
 	private void exit(ActionEvent event) {
@@ -80,17 +105,17 @@ public class ActualitzarProgramesController implements Initializable{
 
     @FXML
     private void loadViewCompilacionProgramas(ActionEvent event) throws IOException {
-    	if (!timeline.getStatus().equals(Status.STOPPED)) timeline.stop();
+    	svc.cancel();
     	stageManager.switchScene(FxmlView.OBTENIR_PROGRAMES_COMPILAR);
     }
     @FXML
     private void loadViewVerProgramas(ActionEvent event) throws IOException {
-    	if (!timeline.getStatus().equals(Status.STOPPED)) timeline.stop();
+    	svc.cancel();
     	stageManager.switchScene(FxmlView.VEURE_PROGRAMES_COMPILAR);
     }
     @FXML
     private void loadViewGenerarPaquetes(ActionEvent event) throws IOException {
-    	if (!timeline.getStatus().equals(Status.STOPPED)) timeline.stop();
+    	svc.cancel();
     	stageManager.switchScene(FxmlView.GENERAR_PAQUETS_COMPILAR);
     }
     
@@ -112,19 +137,61 @@ public class ActualitzarProgramesController implements Initializable{
     
     @FXML
     private void actualitzaTicCompilacionesMasiva(ActionEvent event) {
-    	compMassService.actualitzarTicCompilacioMassiva();
-    	actualitzarTaula();
+    	try {
+    		Task<Void> tascaActualitzarTicCompilacioMassiva = new Task<Void>() { 
+    			@Override
+    			protected Void call() throws Exception {
+    				compMassService.actualitzarTicCompilacioMassiva();
+    				return null;
+    			}	
+    		};
+    		tascaActualitzarTicCompilacioMassiva.setOnRunning((e) -> {
+    			vBoxCenter.getChildren().add(progress);
+    			lblResultat.setText("Copiando datos...");
+    		});
+    		tascaActualitzarTicCompilacioMassiva.setOnSucceeded((e) -> {
+    			compMassService.carregarACompilacions();
+    			actualitzarTaula();
+    			lblResultat.setText("Se ha actualizado correctamente TIC_COMPILACIONES_MASIVA");
+    			vBoxCenter.getChildren().remove(progress);
+    		});
+    		tascaActualitzarTicCompilacioMassiva.setOnFailed((e) ->lblResultat.setText("Error al cargar los datos"));
+    		new Thread(tascaActualitzarTicCompilacioMassiva).start();
+    	} catch (Exception ex) {
+        	//LOG
+    		lblResultat.setText("Se han producido errores durante la actualización de TIC_COMPILACIONES_MASIVA");
+    		LOG.error("Se han producido errores durante la actualización de TIC_COMPILACIONES_MASIVA: " + ex );
+    	}
+    	
     }
     
     @FXML
     private void actualitzaTicCompilaciones(ActionEvent event) {
-    	lblResultat.setText("Copiando datos...");
+    	
     	try {
-	    	compMassService.carregarACompilacions();
-	    	lblResultat.setText("Se ha actualizado correctamente TIC_COMPILACIONES");
+    		Task<Void> tascaActualitzarTicCompilacio = new Task<Void>() { 
+    			@Override
+    			protected Void call() throws Exception {
+    				compMassService.carregarACompilacions();
+    				return null;
+    			}	
+    		};
+    		tascaActualitzarTicCompilacio.setOnRunning((e) -> {
+    			vBoxCenter.getChildren().add(progress);
+    			lblResultat.setText("Copiando datos...");
+    		});
+    		tascaActualitzarTicCompilacio.setOnSucceeded((e) -> {
+    			compMassService.carregarACompilacions();
+    			lblResultat.setText("Se ha actualizado correctamente TIC_COMPILACIONES");
+    			vBoxCenter.getChildren().remove(progress);
+    		});
+    		tascaActualitzarTicCompilacio.setOnFailed((e) ->lblResultat.setText("Error al cargar los datos"));
+	    	new Thread(tascaActualitzarTicCompilacio).start();
+	    	
     	} catch (Exception ex) {
         	//LOG
     		lblResultat.setText("Se han producido errores durante la actualización de TIC_COMPILACIONES");
+    		LOG.error("Se han producido errores durante la actualización de TIC_COMPILACIONES: " + ex );
     	}
     }
 
@@ -136,8 +203,13 @@ public class ActualitzarProgramesController implements Initializable{
 		//0 --> OK
 		//1 --> Pendent
 		//2 --> KO
-		//TODO: ASSEGURAR!!
+		progress =  new ProgressIndicator();
+		progress.setMaxSize(50, 50);
 		crearTaula();
+		
+		svc.setDelay(Duration.seconds(20d));
+		svc.setPeriod(Duration.seconds(20d));
+		svc.setMaximumFailureCount(5);
 		
 		CheckBox checkBox1 = new CheckBox("Actualizar siempre");
 		checkBox1.selectedProperty().addListener(new ChangeListener<Boolean>() {
@@ -146,20 +218,17 @@ public class ActualitzarProgramesController implements Initializable{
 				if(new_val) {
 					executarTimerUpdate();
 				} else {
-					timeline.stop();
+					svc.cancel();
 				}
 			}
 
 			private void executarTimerUpdate() {
-				timeline = new Timeline(new KeyFrame(Duration.seconds(30), "Update taula", new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent event) {
-						compMassService.actualitzarTicCompilacioMassiva();
-						actualitzarTaula();
-					}
-				}));
-				timeline.setCycleCount(Timeline.INDEFINITE);
-				timeline.play();
+				if (svc.getState().equals(State.READY)) {
+					svc.start();	
+				} else {
+					svc.restart();
+				}
+				actualitzarTaula();
 			}
 		});
 		vBoxCenter.getChildren().add(checkBox1);
@@ -172,7 +241,6 @@ public class ActualitzarProgramesController implements Initializable{
 	private void crearTaula() {
 		ticCompilacionesMasivaResumTable.getItems().clear();
 		observableList.clear();
-		compMassService.actualitzarTicCompilacioMassiva();
 		observableList.addAll(obtenirLlistatTaula());
 		ticCompilacionesMasivaResumTable.getItems().addAll(observableList);
 		TableColumn<ResumTicCompilacionesMasiva,Long> colNumResultats = new TableColumn<>("num.Resultats");

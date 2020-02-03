@@ -12,6 +12,8 @@ import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.collections.ObservableList;
+import javafx.concurrent.ScheduledService;
 
 /**
  * Manages switching Scenes on the Primary Stage
@@ -21,8 +23,10 @@ public class StageManager {
 	private static final Logger LOG = getLogger(StageManager.class);
     private final Stage primaryStage;
     private final SpringFXMLLoader springFXMLLoader;
+    private ScheduledService<Boolean> service;
 
-    public StageManager(SpringFXMLLoader springFXMLLoader, Stage stage) {
+    @SuppressWarnings("restriction")
+	public StageManager(SpringFXMLLoader springFXMLLoader, Stage stage) {
         this.springFXMLLoader = springFXMLLoader;
         this.primaryStage = stage;
     }
@@ -81,5 +85,13 @@ public class StageManager {
         LOG.error(errorMsg, exception, exception.getCause());
         Platform.exit();
     }
+
+	public ScheduledService<Boolean> getService() {
+		return service;
+	}
+
+	public void setService(ScheduledService<Boolean> service) {
+		this.service = service;
+	}
 
 }

@@ -74,17 +74,17 @@
                   <Insets bottom="10.0" left="20.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Label prefHeight="35.0" prefWidth="267.0" text="Genera los paquetes y actualiza los datos " textFill="#f8f7f7">
+            <Label prefHeight="35.0" prefWidth="267.0" text="Genera los paquetes y actualiza los datos ">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label prefHeight="35.0" prefWidth="267.0" text="según el nombre de proyecto" textFill="#f8f7f7">
+            <Label prefHeight="35.0" prefWidth="267.0" text="según el nombre de proyecto">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-         		<Label prefWidth="245.0" text="Nombre del proyecto" textFill="WHITE">
+         		<Label prefWidth="245.0" text="Nombre del proyecto: " textFill="WHITE">
 				         <font>
 				            <Font size="13.0" />
 				         </font>
@@ -108,7 +108,7 @@
       </VBox>
    </left>
    <center>
-      <VBox alignment="TOP_RIGHT" prefHeight="571.0" prefWidth="692.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" fx:id="vBoxCenter" prefHeight="571.0" prefWidth="692.0" BorderPane.alignment="CENTER">
          <children>
          	<Label fx:id="lblResultat" text="">
                <font>
