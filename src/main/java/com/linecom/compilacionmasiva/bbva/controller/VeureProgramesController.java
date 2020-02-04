@@ -139,23 +139,26 @@ public class VeureProgramesController implements Initializable{
 		TableColumn<VistaTicCompilacionesMasiva,String> colGrupoFuncional = new TableColumn<>("Grupo Funcional");
 		PropertyValueFactory<VistaTicCompilacionesMasiva, String> grupoFuncionalCellValueFactory = new PropertyValueFactory<>("nombreGrupoFuncional");
 		colGrupoFuncional.setCellValueFactory(grupoFuncionalCellValueFactory);
-		TableColumn<VistaTicCompilacionesMasiva,BigDecimal> colEntidad = new TableColumn<>("Entidad");
-		PropertyValueFactory<VistaTicCompilacionesMasiva, BigDecimal> entidadCellValueFactory = new PropertyValueFactory<>("entidad");
-		colEntidad.setCellValueFactory(entidadCellValueFactory);
+//		TableColumn<VistaTicCompilacionesMasiva,BigDecimal> colEntidad = new TableColumn<>("Entidad");
+//		PropertyValueFactory<VistaTicCompilacionesMasiva, BigDecimal> entidadCellValueFactory = new PropertyValueFactory<>("entidad");
+//		colEntidad.setCellValueFactory(entidadCellValueFactory);
 		TableColumn<VistaTicCompilacionesMasiva,String> colEntorno = new TableColumn<>("Entorno");
 		PropertyValueFactory<VistaTicCompilacionesMasiva, String> entornoCellValueFactory = new PropertyValueFactory<>("entorno");
 		colEntorno.setCellValueFactory(entornoCellValueFactory);
+		TableColumn<VistaTicCompilacionesMasiva,String> colFuente = new TableColumn<>("Fuente");
+		PropertyValueFactory<VistaTicCompilacionesMasiva, String> fuenteCellValueFactory = new PropertyValueFactory<>("fuente");
+		colFuente.setCellValueFactory(fuenteCellValueFactory);
 		TableColumn<VistaTicCompilacionesMasiva,BigDecimal> colResultadoCompilacion = new TableColumn<>("Resultado compilación");
 		PropertyValueFactory<VistaTicCompilacionesMasiva, BigDecimal> resultadoCompilacionCellValueFactory = new PropertyValueFactory<>("resultadoCompilacion");
 		colResultadoCompilacion.setCellValueFactory(resultadoCompilacionCellValueFactory);
-		TableColumn<VistaTicCompilacionesMasiva,Boolean> colDownload = new TableColumn<>("Mas datos");
-//		ticCompilacionesMasivaTable.get
-//		colDownload.setCellValueFactory(cellData -> new SimpleObjectProperty<VistaTicCompilacionesMasiva>(cellData.getValue()));
-		colDownload.setCellFactory(cellFactory);
-		ticCompilacionesMasivaTable.getColumns().addAll(colGrupoFuncional,colEntidad, colEntorno, colResultadoCompilacion, colDownload);
+		TableColumn<VistaTicCompilacionesMasiva,Boolean> colDownloadFuente = new TableColumn<>("Fichero fuente");
+		colDownloadFuente.setCellFactory(cellFactoryFuente);
+		TableColumn<VistaTicCompilacionesMasiva,Boolean> colDownloadResultado = new TableColumn<>("Fichero resultado");
+		colDownloadResultado.setCellFactory(cellFactoryResultado);
+		ticCompilacionesMasivaTable.getColumns().addAll(colGrupoFuncional, colEntorno, colFuente, colResultadoCompilacion, colDownloadFuente, colDownloadResultado);
 	}
-	
-	Callback<TableColumn<VistaTicCompilacionesMasiva, Boolean>, TableCell<VistaTicCompilacionesMasiva, Boolean>> cellFactory = 
+	//Fa falta repetir cellFactory??
+	Callback<TableColumn<VistaTicCompilacionesMasiva, Boolean>, TableCell<VistaTicCompilacionesMasiva, Boolean>> cellFactoryFuente = 
 			new Callback<TableColumn<VistaTicCompilacionesMasiva, Boolean>, TableCell<VistaTicCompilacionesMasiva, Boolean>>()	{
 		@Override
 		public TableCell<VistaTicCompilacionesMasiva, Boolean> call( final TableColumn<VistaTicCompilacionesMasiva, Boolean> param) {
@@ -174,7 +177,7 @@ public class VeureProgramesController implements Initializable{
 						btnEdit.setOnAction(e ->{
 							guardaFitxer(row);
 						});
-						if (row.getFichero() != null) {
+						if (row.getFicheroFuente() != null) {
 							btnEdit.setStyle("-fx-background-color: transparent;");
 							ImageView iv = new ImageView();
 					        iv.setImage(imgEdit);
@@ -193,11 +196,70 @@ public class VeureProgramesController implements Initializable{
 				}
 
 				private void guardaFitxer(VistaTicCompilacionesMasiva row) {
-					if (row.getFichero() != null) {
-						lblResultat.setText("Guardando el fichero...");
-						String nomFitxer = row.getNombreGrupoFuncional() + "." + row.getTipoFuente();
+					if (row.getFicheroFuente() != null) {
+						lblResultat.setText("Guardando el fichero..."); 
+						String nomFitxer = row.getNombreGrupoFuncional() + "_FUENTE." + row.getTipoFuente();
 				        try {
-							saveBytesToFile(nomFitxer, row.getFichero());
+							saveBytesToFile(nomFitxer, row.getFicheroFuente());
+							lblResultat.setText("Fichero guardado en ./" + nomFitxer);
+						} catch (IOException e) {
+							lblResultat.setText("Error al guardar el fichero" + e);
+						}	
+					}
+				}
+
+				private void saveBytesToFile(String nomFitxer, byte[] fichero) throws IOException {
+					FileOutputStream outputStream = new FileOutputStream(nomFitxer);
+			        outputStream.write(fichero);
+			        outputStream.close();
+				}
+			};
+			return cell;
+		}
+	};
+	Callback<TableColumn<VistaTicCompilacionesMasiva, Boolean>, TableCell<VistaTicCompilacionesMasiva, Boolean>> cellFactoryResultado = 
+			new Callback<TableColumn<VistaTicCompilacionesMasiva, Boolean>, TableCell<VistaTicCompilacionesMasiva, Boolean>>()	{
+		@Override
+		public TableCell<VistaTicCompilacionesMasiva, Boolean> call( final TableColumn<VistaTicCompilacionesMasiva, Boolean> param) {
+			final TableCell<VistaTicCompilacionesMasiva, Boolean> cell = new TableCell<VistaTicCompilacionesMasiva, Boolean>() {
+				Image imgEdit = new Image(getClass().getResourceAsStream("/images/open-doc.png"));
+				final Button btnEdit = new Button();
+				
+				@Override
+				public void updateItem(Boolean check, boolean empty) {
+					super.updateItem(check, empty);
+					if(empty) {
+						setGraphic(null);
+						setText(null);
+					} else{
+						VistaTicCompilacionesMasiva row = getTableView().getItems().get(getIndex());
+						btnEdit.setOnAction(e ->{
+							guardaFitxer(row);
+						});
+						if (row.getFicheroResultado() != null) {
+							btnEdit.setStyle("-fx-background-color: transparent;");
+							ImageView iv = new ImageView();
+					        iv.setImage(imgEdit);
+					        iv.setPreserveRatio(true);
+					        iv.setSmooth(true);
+					        iv.setCache(true);
+							btnEdit.setGraphic(iv);
+							
+							setGraphic(btnEdit);	
+						} else {
+							setGraphic(null);
+						}
+						
+						setText(null);
+					}
+				}
+
+				private void guardaFitxer(VistaTicCompilacionesMasiva row) {
+					if (row.getFicheroResultado() != null) {
+						lblResultat.setText("Guardando el fichero..."); 
+						String nomFitxer = row.getNombreGrupoFuncional() + "_RESULTADO." + row.getTipoFuente();
+				        try {
+							saveBytesToFile(nomFitxer, row.getFicheroResultado());
 							lblResultat.setText("Fichero guardado en ./" + nomFitxer);
 						} catch (IOException e) {
 							lblResultat.setText("Error al guardar el fichero" + e);
@@ -226,9 +288,8 @@ public class VeureProgramesController implements Initializable{
 		List<TicCompilacionesMasiva> resultats = compMassService.veureTicCompilacioMassivaPerResultatCompilacio(resultatCompilacio);
 		List<VistaTicCompilacionesMasiva> resultatsVista = new ArrayList<VistaTicCompilacionesMasiva>();
 		for (TicCompilacionesMasiva resultat : resultats) {
-			VistaTicCompilacionesMasiva resultatVista = new VistaTicCompilacionesMasiva(resultat.getTicCompilacionesId().getNombreGrupoFuncional(), 
-				resultat.getTicCompilacionesId().getEntidad(), resultat.getTicCompilacionesId().getEntorno() , resultat.getResultadoCompilacion(), resultat.getFicheroFuente(),
-				resultat.getTipoFuente());
+			VistaTicCompilacionesMasiva resultatVista = new VistaTicCompilacionesMasiva(resultat.getTicCompilacionesId().getNombreGrupoFuncional(), resultat.getTicCompilacionesId().getEntorno(), 
+					resultat.getFuente(), resultat.getResultadoCompilacion(), resultat.getFicheroFuente(), resultat.getResultado(),	resultat.getTipoFuente());
 			resultatsVista.add(resultatVista);
 		}
 		ObservableList<VistaTicCompilacionesMasiva> observableListTaula = FXCollections.<VistaTicCompilacionesMasiva>observableArrayList(resultatsVista);

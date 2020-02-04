@@ -5,20 +5,22 @@ import java.math.BigDecimal;
 public class VistaTicCompilacionesMasiva {
 	
 	private String nombreGrupoFuncional;
-	private BigDecimal entidad;
 	private String entorno;
+	private String fuente;
 	private BigDecimal resultadoCompilacion;
-	private byte[] fichero;
+	private byte[] ficheroFuente;
+	private byte[] ficheroResultado;
 	private String tipoFuente;
 	
-	public VistaTicCompilacionesMasiva(String nombreGrupoFuncional, BigDecimal entidad, String entorno,
-			BigDecimal resultadoCompilacion, byte[] fichero, String tipoFuente) {
+	public VistaTicCompilacionesMasiva(String nombreGrupoFuncional, String entorno, String fuente,
+			BigDecimal resultadoCompilacion, byte[] ficheroFuente, byte[] ficheroResultado, String tipoFuente) {
 		super();
 		this.nombreGrupoFuncional = nombreGrupoFuncional;
-		this.entidad = entidad;
 		this.entorno = entorno;
+		this.fuente = fuente;
 		this.resultadoCompilacion = resultadoCompilacion;
-		this.fichero = fichero;
+		this.ficheroFuente = ficheroFuente;
+		this.ficheroResultado = ficheroResultado;
 		this.tipoFuente = tipoFuente;
 	}
 
@@ -28,14 +30,6 @@ public class VistaTicCompilacionesMasiva {
 
 	public void setNombreGrupoFuncional(String nombreGrupoFuncional) {
 		this.nombreGrupoFuncional = nombreGrupoFuncional;
-	}
-
-	public BigDecimal getEntidad() {
-		return entidad;
-	}
-
-	public void setEntidad(BigDecimal entidad) {
-		this.entidad = entidad;
 	}
 
 	public String getEntorno() {
@@ -54,14 +48,22 @@ public class VistaTicCompilacionesMasiva {
 		this.resultadoCompilacion = resultadoCompilacion;
 	}
 
-	public byte[] getFichero() {
-		return fichero;
+	public byte[] getFicheroFuente() {
+		return ficheroFuente;
 	}
 
-	public void setFichero(byte[] fichero) {
-		this.fichero = fichero;
+	public void setFicheroFuente(byte[] ficheroFuente) {
+		this.ficheroFuente = ficheroFuente;
 	}
 
+	public byte[] getFicheroResultado() {
+		return ficheroResultado;
+	}
+
+	public void setFicheroResultado(byte[] ficheroResultado) {
+		this.ficheroResultado = ficheroResultado;
+	}
+	
 	public String getTipoFuente() {
 		return tipoFuente;
 	}
@@ -69,6 +71,13 @@ public class VistaTicCompilacionesMasiva {
 	public void setTipoFuente(String tipoFuente) {
 		this.tipoFuente = tipoFuente;
 	}
-	
+
+	public String getFuente() {
+		return fuente;
+	}
+
+	public void setFuente(String fuente) {
+		this.fuente = fuente;
+	}
 	
 }

@@ -1,37 +1,190 @@
-2020-02-03 15:41:40.426  INFO 20032 --- [main] c.l.c.bbva.ComaApplicationTests          : Starting ComaApplicationTests on LN00032 with PID 20032 (started by xmartin in C:\Users\xmartin\Workspace2019\COMA)
-2020-02-03 15:41:40.435  INFO 20032 --- [main] c.l.c.bbva.ComaApplicationTests          : No active profile set, falling back to default profiles: default
-2020-02-03 15:41:43.001  INFO 20032 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-02-03 15:41:43.227  INFO 20032 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 170ms. Found 7 repository interfaces.
-2020-02-03 15:41:44.118  INFO 20032 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-02-03 15:41:45.041  INFO 20032 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-02-03 15:41:45.161  INFO 20032 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
-2020-02-03 15:41:45.423  INFO 20032 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-02-03 15:41:46.341  INFO 20032 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-02-03 15:41:46.346  WARN 20032 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-2020-02-03 15:41:49.116  INFO 20032 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-02-03 15:41:49.351  INFO 20032 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
-2020-02-03 15:41:52.831  INFO 20032 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-02-03 15:41:53.502  INFO 20032 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-02-03 15:41:56.842  WARN 20032 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-02-03 15:41:57.322  INFO 20032 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-02-03 15:41:58.008  WARN 20032 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2020-02-03 15:41:58.369  INFO 20032 --- [main] c.l.c.bbva.ComaApplicationTests          : Started ComaApplicationTests in 19.229 seconds (JVM running for 26.384)
-2020-02-03 15:41:58.614  INFO 20032 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.linecom.compilacionmasiva.bbva.service.CompMassServiceTest], using SpringBootContextLoader
-2020-02-03 15:41:58.616  INFO 20032 --- [main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.linecom.compilacionmasiva.bbva.service.CompMassServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2020-02-03 15:41:58.617  INFO 20032 --- [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.linecom.compilacionmasiva.bbva.service.CompMassServiceTest]: CompMassServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2020-02-03 15:41:58.655  INFO 20032 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.linecom.compilacionmasiva.bbva.Main for test class com.linecom.compilacionmasiva.bbva.service.CompMassServiceTest
-2020-02-03 15:41:58.658  INFO 20032 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2020-02-03 15:41:58.659  INFO 20032 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@18be3205, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6fd97fd1, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@12c78f36, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7bdb4d69, org.springframework.test.context.support.DirtiesContextTestExecutionListener@129c760d, org.springframework.test.context.transaction.TransactionalTestExecutionListener@361fa478, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@180f33b2, org.springframework.test.context.event.EventPublishingTestExecutionListener@391e85df, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@48c3a0ef, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@3b4f1eb, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6247c08c, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2f3a8166, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7aab98b6]
-2020-02-03 15:41:58.749  INFO 20032 --- [main] c.l.c.bbva.service.CompMassServiceTest   : Starting CompMassServiceTest on LN00032 with PID 20032 (started by xmartin in C:\Users\xmartin\Workspace2019\COMA)
-2020-02-03 15:41:58.750  INFO 20032 --- [main] c.l.c.bbva.service.CompMassServiceTest   : No active profile set, falling back to default profiles: default
-2020-02-03 15:41:59.151  INFO 20032 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-02-03 15:41:59.190  INFO 20032 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38ms. Found 7 repository interfaces.
-2020-02-03 15:41:59.328  INFO 20032 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-02-03 15:41:59.469  INFO 20032 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-02-03 15:41:59.479  INFO 20032 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
-2020-02-03 15:42:00.506  INFO 20032 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
-2020-02-03 15:42:00.511  INFO 20032 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServerDialect
-2020-02-03 15:42:00.806  WARN 20032 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table des_fuentes" via JDBC Statement
+2020-02-04 15:14:08.620  INFO 19964 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LN00032 with PID 19964 (started by xmartin in C:\Users\xmartin\Workspace2019\COMA)
+2020-02-04 15:14:08.628  INFO 19964 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2020-02-04 15:14:08.731  INFO 19964 --- [JavaFX-Launcher] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-02-04 15:14:09.674  INFO 19964 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-02-04 15:14:09.797  INFO 19964 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 108ms. Found 7 repository interfaces.
+2020-02-04 15:14:10.452  INFO 19964 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-02-04 15:14:10.561  INFO 19964 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2020-02-04 15:14:10.748  INFO 19964 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-02-04 15:14:11.577  INFO 19964 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-02-04 15:14:11.581  WARN 19964 --- [JavaFX-Launcher] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+2020-02-04 15:14:13.633  INFO 19964 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-02-04 15:14:13.775  INFO 19964 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-02-04 15:14:16.080  INFO 19964 --- [JavaFX-Launcher] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-02-04 15:14:16.424  INFO 19964 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 15:14:18.077  WARN 19964 --- [JavaFX-Launcher] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-02-04 15:14:18.121  INFO 19964 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 10.149 seconds (JVM running for 11.211)
+2020-02-04 15:30:14.795  INFO 19964 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 15:30:14.827  INFO 19964 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-02-04 15:30:14.876  INFO 19964 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-02-04 15:44:40.544  INFO 15120 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LN00032 with PID 15120 (started by xmartin in C:\Users\xmartin\Workspace2019\COMA)
+2020-02-04 15:44:40.548  INFO 15120 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2020-02-04 15:44:40.606  INFO 15120 --- [JavaFX-Launcher] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-02-04 15:44:41.295  INFO 15120 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-02-04 15:44:41.414  INFO 15120 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 109ms. Found 8 repository interfaces.
+2020-02-04 15:44:42.090  INFO 15120 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-02-04 15:44:42.190  INFO 15120 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2020-02-04 15:44:42.361  INFO 15120 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-02-04 15:44:43.134  INFO 15120 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-02-04 15:44:43.138  WARN 15120 --- [JavaFX-Launcher] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+2020-02-04 15:44:44.552  INFO 15120 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-02-04 15:44:44.608  INFO 15120 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-02-04 15:44:46.121  INFO 15120 --- [JavaFX-Launcher] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-02-04 15:44:46.309  INFO 15120 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 15:44:47.664  WARN 15120 --- [JavaFX-Launcher] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-02-04 15:44:47.711  INFO 15120 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 7.71 seconds (JVM running for 8.59)
+2020-02-04 16:05:13.453  INFO 15120 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:05:13.548  INFO 15120 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-02-04 16:05:13.657  INFO 15120 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-02-04 16:07:28.258  INFO 6900 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LN00032 with PID 6900 (started by xmartin in C:\Users\xmartin\Workspace2019\COMA)
+2020-02-04 16:07:28.276  INFO 6900 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2020-02-04 16:07:28.454  INFO 6900 --- [JavaFX-Launcher] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-02-04 16:07:29.709  INFO 6900 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-02-04 16:07:29.896  INFO 6900 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 164ms. Found 8 repository interfaces.
+2020-02-04 16:07:30.952  INFO 6900 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-02-04 16:07:31.132  INFO 6900 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2020-02-04 16:07:31.489  INFO 6900 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-02-04 16:07:32.313  INFO 6900 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-02-04 16:07:32.319  WARN 6900 --- [JavaFX-Launcher] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+2020-02-04 16:07:34.118  INFO 6900 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-02-04 16:07:34.192  INFO 6900 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-02-04 16:07:36.132  INFO 6900 --- [JavaFX-Launcher] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-02-04 16:07:36.365  INFO 6900 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:07:38.902  WARN 6900 --- [JavaFX-Launcher] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-02-04 16:07:38.940  INFO 6900 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 11.809 seconds (JVM running for 15.468)
+2020-02-04 16:15:18.467  INFO 6900 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:15:18.474  INFO 6900 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-02-04 16:15:18.508  INFO 6900 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-02-04 16:19:25.635  INFO 17224 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LN00032 with PID 17224 (started by xmartin in C:\Users\xmartin\Workspace2019\COMA)
+2020-02-04 16:19:25.639  INFO 17224 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2020-02-04 16:19:25.692  INFO 17224 --- [JavaFX-Launcher] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-02-04 16:19:26.390  INFO 17224 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-02-04 16:19:26.521  INFO 17224 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 120ms. Found 8 repository interfaces.
+2020-02-04 16:19:27.325  INFO 17224 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-02-04 16:19:27.438  INFO 17224 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2020-02-04 16:19:27.627  INFO 17224 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-02-04 16:19:28.438  INFO 17224 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-02-04 16:19:28.442  WARN 17224 --- [JavaFX-Launcher] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+2020-02-04 16:19:29.599  INFO 17224 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-02-04 16:19:29.621  INFO 17224 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-02-04 16:19:30.872  INFO 17224 --- [JavaFX-Launcher] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-02-04 16:19:31.010  INFO 17224 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:19:32.095  WARN 17224 --- [JavaFX-Launcher] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-02-04 16:19:32.128  INFO 17224 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 7.06 seconds (JVM running for 8.048)
+2020-02-04 16:19:46.075  INFO 17224 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:19:46.081  INFO 17224 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-02-04 16:19:46.113  INFO 17224 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-02-04 16:20:13.248  INFO 24776 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LN00032 with PID 24776 (started by xmartin in C:\Users\xmartin\Workspace2019\COMA)
+2020-02-04 16:20:13.251  INFO 24776 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2020-02-04 16:20:13.318  INFO 24776 --- [JavaFX-Launcher] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-02-04 16:20:13.929  INFO 24776 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-02-04 16:20:14.067  INFO 24776 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 127ms. Found 8 repository interfaces.
+2020-02-04 16:20:14.751  INFO 24776 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-02-04 16:20:14.832  INFO 24776 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2020-02-04 16:20:14.986  INFO 24776 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-02-04 16:20:15.734  INFO 24776 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-02-04 16:20:15.737  WARN 24776 --- [JavaFX-Launcher] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+2020-02-04 16:20:16.830  INFO 24776 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-02-04 16:20:16.849  INFO 24776 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-02-04 16:20:17.977  INFO 24776 --- [JavaFX-Launcher] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-02-04 16:20:18.125  INFO 24776 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:20:19.299  WARN 24776 --- [JavaFX-Launcher] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-02-04 16:20:19.348  INFO 24776 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.644 seconds (JVM running for 7.403)
+2020-02-04 16:21:06.494  INFO 24776 --- [Thread-14] c.l.c.bbva.service.CompMassService       : Registros a TIC_COMPILACIONES_MASIVA
+2020-02-04 16:23:01.501  INFO 24776 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:23:01.504  INFO 24776 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-02-04 16:23:01.529  INFO 24776 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-02-04 16:23:30.431  INFO 21152 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LN00032 with PID 21152 (started by xmartin in C:\Users\xmartin\Workspace2019\COMA)
+2020-02-04 16:23:30.435  INFO 21152 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2020-02-04 16:23:30.490  INFO 21152 --- [JavaFX-Launcher] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-02-04 16:23:31.060  INFO 21152 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-02-04 16:23:31.165  INFO 21152 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 95ms. Found 8 repository interfaces.
+2020-02-04 16:23:31.811  INFO 21152 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-02-04 16:23:31.909  INFO 21152 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2020-02-04 16:23:32.065  INFO 21152 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-02-04 16:23:32.829  INFO 21152 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-02-04 16:23:32.833  WARN 21152 --- [JavaFX-Launcher] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+2020-02-04 16:23:33.962  INFO 21152 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-02-04 16:23:33.983  INFO 21152 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-02-04 16:23:35.158  INFO 21152 --- [JavaFX-Launcher] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-02-04 16:23:35.289  INFO 21152 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:23:36.317  WARN 21152 --- [JavaFX-Launcher] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-02-04 16:23:36.353  INFO 21152 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.462 seconds (JVM running for 7.181)
+2020-02-04 16:29:11.830  INFO 21152 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:29:11.837  INFO 21152 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-02-04 16:29:11.869  INFO 21152 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-02-04 16:29:17.702  INFO 26164 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LN00032 with PID 26164 (started by xmartin in C:\Users\xmartin\Workspace2019\COMA)
+2020-02-04 16:29:17.705  INFO 26164 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2020-02-04 16:29:17.759  INFO 26164 --- [JavaFX-Launcher] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-02-04 16:29:18.350  INFO 26164 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-02-04 16:29:18.472  INFO 26164 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 111ms. Found 8 repository interfaces.
+2020-02-04 16:29:19.122  INFO 26164 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-02-04 16:29:19.217  INFO 26164 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2020-02-04 16:29:19.371  INFO 26164 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-02-04 16:29:20.150  INFO 26164 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-02-04 16:29:20.153  WARN 26164 --- [JavaFX-Launcher] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+2020-02-04 16:29:21.227  INFO 26164 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-02-04 16:29:21.246  INFO 26164 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-02-04 16:29:22.418  INFO 26164 --- [JavaFX-Launcher] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-02-04 16:29:22.543  INFO 26164 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:29:23.519  WARN 26164 --- [JavaFX-Launcher] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-02-04 16:29:23.558  INFO 26164 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.386 seconds (JVM running for 7.097)
+2020-02-04 16:30:12.381  INFO 26164 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:30:12.385  INFO 26164 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-02-04 16:30:12.410  INFO 26164 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-02-04 16:30:33.925  INFO 19200 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application on LN00032 with PID 19200 (started by xmartin in C:\Users\xmartin\Workspace2019\COMA)
+2020-02-04 16:30:33.929  INFO 19200 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to default profiles: default
+2020-02-04 16:30:33.986  INFO 19200 --- [JavaFX-Launcher] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-02-04 16:30:34.620  INFO 19200 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-02-04 16:30:34.779  INFO 19200 --- [JavaFX-Launcher] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 146ms. Found 8 repository interfaces.
+2020-02-04 16:30:35.476  INFO 19200 --- [JavaFX-Launcher] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-02-04 16:30:35.561  INFO 19200 --- [JavaFX-Launcher] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2020-02-04 16:30:35.742  INFO 19200 --- [JavaFX-Launcher] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-02-04 16:30:36.520  INFO 19200 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-02-04 16:30:36.524  WARN 19200 --- [JavaFX-Launcher] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+2020-02-04 16:30:37.599  INFO 19200 --- [JavaFX-Launcher] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-02-04 16:30:37.619  INFO 19200 --- [JavaFX-Launcher] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-02-04 16:30:38.729  INFO 19200 --- [JavaFX-Launcher] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-02-04 16:30:38.865  INFO 19200 --- [JavaFX-Launcher] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:30:39.959  WARN 19200 --- [JavaFX-Launcher] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-02-04 16:30:39.992  INFO 19200 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 6.634 seconds (JVM running for 7.391)
+2020-02-04 16:36:01.727  INFO 19200 --- [JavaFX Application Thread] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:36:01.732  INFO 19200 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-02-04 16:36:01.760  INFO 19200 --- [JavaFX Application Thread] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-02-04 16:36:32.692  INFO 26264 --- [main] c.l.c.bbva.ComaApplicationTests          : Starting ComaApplicationTests on LN00032 with PID 26264 (started by xmartin in C:\Users\xmartin\Workspace2019\COMA)
+2020-02-04 16:36:32.693  INFO 26264 --- [main] c.l.c.bbva.ComaApplicationTests          : No active profile set, falling back to default profiles: default
+2020-02-04 16:36:33.838  INFO 26264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-02-04 16:36:33.988  INFO 26264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 136ms. Found 8 repository interfaces.
+2020-02-04 16:36:34.493  INFO 26264 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-02-04 16:36:35.078  INFO 26264 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-02-04 16:36:35.178  INFO 26264 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2020-02-04 16:36:35.348  INFO 26264 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-02-04 16:36:36.123  INFO 26264 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-02-04 16:36:36.128  WARN 26264 --- [main] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+2020-02-04 16:36:37.703  INFO 26264 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-02-04 16:36:37.734  INFO 26264 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-02-04 16:36:39.098  INFO 26264 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-02-04 16:36:39.393  INFO 26264 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:36:40.805  WARN 26264 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-02-04 16:36:41.230  INFO 26264 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-04 16:36:41.597  WARN 26264 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-02-04 16:36:41.808  INFO 26264 --- [main] c.l.c.bbva.ComaApplicationTests          : Started ComaApplicationTests in 9.647 seconds (JVM running for 13.205)
+2020-02-04 16:36:42.104  INFO 26264 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.linecom.compilacionmasiva.bbva.service.CompMassServiceTest], using SpringBootContextLoader
+2020-02-04 16:36:42.108  INFO 26264 --- [main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.linecom.compilacionmasiva.bbva.service.CompMassServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2020-02-04 16:36:42.108  INFO 26264 --- [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.linecom.compilacionmasiva.bbva.service.CompMassServiceTest]: CompMassServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2020-02-04 16:36:42.148  INFO 26264 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.linecom.compilacionmasiva.bbva.Main for test class com.linecom.compilacionmasiva.bbva.service.CompMassServiceTest
+2020-02-04 16:36:42.155  INFO 26264 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2020-02-04 16:36:42.155  INFO 26264 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6949cead, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@fe13916, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5ea0a7a9, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@278c998, org.springframework.test.context.support.DirtiesContextTestExecutionListener@25e353dc, org.springframework.test.context.transaction.TransactionalTestExecutionListener@234ce7ff, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@780a91d0, org.springframework.test.context.event.EventPublishingTestExecutionListener@3cfab340, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@3387ab0, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@470f0637, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6b278b17, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2ae5580, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@4203529f]
+2020-02-04 16:36:42.228  INFO 26264 --- [main] c.l.c.bbva.service.CompMassServiceTest   : Starting CompMassServiceTest on LN00032 with PID 26264 (started by xmartin in C:\Users\xmartin\Workspace2019\COMA)
+2020-02-04 16:36:42.228  INFO 26264 --- [main] c.l.c.bbva.service.CompMassServiceTest   : No active profile set, falling back to default profiles: default
+2020-02-04 16:36:42.559  INFO 26264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-02-04 16:36:42.640  INFO 26264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 81ms. Found 8 repository interfaces.
+2020-02-04 16:36:42.785  INFO 26264 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-02-04 16:36:42.888  INFO 26264 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-02-04 16:36:42.898  INFO 26264 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2020-02-04 16:36:43.494  INFO 26264 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2020-02-04 16:36:43.498  INFO 26264 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServerDialect
+2020-02-04 16:36:43.698  WARN 26264 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table des_fuentes" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table des_fuentes" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
@@ -151,7 +304,7 @@ drop table des_fuentes [42102-200]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
 	... 98 common frames omitted
 
-2020-02-03 15:42:00.811  WARN 20032 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table des_funciones" via JDBC Statement
+2020-02-04 16:36:43.703  WARN 26264 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table des_funciones" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table des_funciones" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
@@ -271,7 +424,7 @@ drop table des_funciones [42102-200]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
 	... 98 common frames omitted
 
-2020-02-03 15:42:00.816  WARN 20032 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table des_grupo_funcional" via JDBC Statement
+2020-02-04 16:36:43.708  WARN 26264 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table des_grupo_funcional" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table des_grupo_funcional" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
@@ -391,7 +544,7 @@ drop table des_grupo_funcional [42102-200]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
 	... 98 common frames omitted
 
-2020-02-03 15:42:00.819  WARN 20032 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table des_grupos_func_paquete" via JDBC Statement
+2020-02-04 16:36:43.713  WARN 26264 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table des_grupos_func_paquete" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table des_grupos_func_paquete" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
@@ -511,7 +664,7 @@ drop table des_grupos_func_paquete [42102-200]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
 	... 98 common frames omitted
 
-2020-02-03 15:42:00.824  WARN 20032 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table des_paquetes" via JDBC Statement
+2020-02-04 16:36:43.716  WARN 26264 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table des_paquetes" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table des_paquetes" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
@@ -631,7 +784,7 @@ drop table des_paquetes [42102-200]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
 	... 98 common frames omitted
 
-2020-02-03 15:42:00.827  WARN 20032 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table des_versiones_gf" via JDBC Statement
+2020-02-04 16:36:43.718  WARN 26264 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table des_versiones_gf" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table des_versiones_gf" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
@@ -751,7 +904,7 @@ drop table des_versiones_gf [42102-200]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
 	... 98 common frames omitted
 
-2020-02-03 15:42:00.830  WARN 20032 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table seq_paquetes" via JDBC Statement
+2020-02-04 16:36:43.723  WARN 26264 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table seq_paquetes" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table seq_paquetes" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
@@ -871,7 +1024,7 @@ drop table seq_paquetes [42102-200]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
 	... 98 common frames omitted
 
-2020-02-03 15:42:00.834  WARN 20032 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table tic_compilaciones" via JDBC Statement
+2020-02-04 16:36:43.723  WARN 26264 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table tic_compilaciones" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table tic_compilaciones" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
@@ -991,7 +1144,7 @@ drop table tic_compilaciones [42102-200]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
 	... 98 common frames omitted
 
-2020-02-03 15:42:00.838  WARN 20032 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table tic_compilaciones_masiva" via JDBC Statement
+2020-02-04 16:36:43.728  WARN 26264 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table tic_compilaciones_masiva" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table tic_compilaciones_masiva" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
@@ -1111,7 +1264,7 @@ drop table tic_compilaciones_masiva [42102-200]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
 	... 98 common frames omitted
 
-2020-02-03 15:42:00.842  WARN 20032 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table tic_fuentes_entornos" via JDBC Statement
+2020-02-04 16:36:43.728  WARN 26264 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table tic_fuentes_entornos" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table tic_fuentes_entornos" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
@@ -1231,7 +1384,7 @@ drop table tic_fuentes_entornos [42102-200]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
 	... 98 common frames omitted
 
-2020-02-03 15:42:00.844  WARN 20032 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table tic_grupo_funcional_entornos" via JDBC Statement
+2020-02-04 16:36:43.733  WARN 26264 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table tic_grupo_funcional_entornos" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table tic_grupo_funcional_entornos" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
@@ -1351,7 +1504,7 @@ drop table tic_grupo_funcional_entornos [42102-200]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
 	... 98 common frames omitted
 
-2020-02-03 15:42:00.847  WARN 20032 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table tic_grupos_func_entidad" via JDBC Statement
+2020-02-04 16:36:43.733  WARN 26264 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table tic_grupos_func_entidad" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table tic_grupos_func_entidad" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
@@ -1471,7 +1624,7 @@ drop table tic_grupos_func_entidad [42102-200]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
 	... 98 common frames omitted
 
-2020-02-03 15:42:00.851  WARN 20032 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table tic_paquetes_entidad" via JDBC Statement
+2020-02-04 16:36:43.738  WARN 26264 --- [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "drop table tic_paquetes_entidad" via JDBC Statement
 
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "drop table tic_paquetes_entidad" via JDBC Statement
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
@@ -1591,34 +1744,34 @@ drop table tic_paquetes_entidad [42102-200]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-5.4.8.Final.jar:5.4.8.Final]
 	... 98 common frames omitted
 
-2020-02-03 15:42:00.904  INFO 20032 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-02-03 15:42:00.923  INFO 20032 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-02-03 15:42:01.398  WARN 20032 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-02-03 15:42:01.601  INFO 20032 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-02-03 15:42:01.822  WARN 20032 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
-2020-02-03 15:42:01.967  INFO 20032 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:test'
-2020-02-03 15:42:02.053  INFO 20032 --- [main] c.l.c.bbva.service.CompMassServiceTest   : Started CompMassServiceTest in 3.342 seconds (JVM running for 30.068)
-2020-02-03 15:42:02.253  INFO 20032 --- [main] c.l.c.bbva.service.CompMassService       : Carga de datos a TIC_COMPILACIONES
-2020-02-03 15:42:02.354  INFO 20032 --- [main] c.l.c.bbva.service.CompMassService       : Eliminados registros de TIC_COMPILACIONES_MASIVA
-2020-02-03 15:42:02.396  INFO 20032 --- [main] c.l.c.bbva.service.CompMassService       : Registros a TIC_COMPILACIONES_MASIVA
-2020-02-03 15:42:02.407  INFO 20032 --- [main] c.l.c.bbva.service.CompMassService       : Eliminados registros de TIC_COMPILACIONES_MASIVA
-2020-02-03 15:42:02.453  INFO 20032 --- [main] c.l.c.bbva.service.CompMassService       : Registros a TIC_COMPILACIONES_MASIVA
-2020-02-03 15:42:02.486  INFO 20032 --- [main] c.l.c.bbva.service.CompMassService       : Actualizando registros TIC_COMPILACIONES_MASIVA
-2020-02-03 15:42:02.498  INFO 20032 --- [main] c.l.c.bbva.service.CompMassService       : Actualizados registros TIC_COMPILACIONES_MASIVA
-2020-02-03 15:42:02.557  INFO 20032 --- [main] c.l.c.bbva.service.CompMassService       : Registros a TIC_COMPILACIONES_MASIVA
-2020-02-03 15:42:02.693  INFO 20032 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-02-03 15:42:02.693  INFO 20032 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-02-03 15:42:02.699  INFO 20032 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-02-03 15:42:02.703  INFO 20032 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-02-03 15:42:02.707  INFO 20032 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-02-03 15:42:02.711  WARN 20032 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2020-02-03 15:42:02.713 ERROR 20032 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+2020-02-04 16:36:43.843  INFO 26264 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-02-04 16:36:43.878  INFO 26264 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:36:44.335  WARN 26264 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-02-04 16:36:44.488  INFO 26264 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-04 16:36:44.609  WARN 26264 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-02-04 16:36:44.693  INFO 26264 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:test'
+2020-02-04 16:36:44.761  INFO 26264 --- [main] c.l.c.bbva.service.CompMassServiceTest   : Started CompMassServiceTest in 2.603 seconds (JVM running for 16.161)
+2020-02-04 16:36:44.904  INFO 26264 --- [main] c.l.c.bbva.service.CompMassService       : Carga de datos a TIC_COMPILACIONES
+2020-02-04 16:36:45.008  INFO 26264 --- [main] c.l.c.bbva.service.CompMassService       : Eliminados registros de TIC_COMPILACIONES_MASIVA
+2020-02-04 16:36:45.054  INFO 26264 --- [main] c.l.c.bbva.service.CompMassService       : Registros a TIC_COMPILACIONES_MASIVA
+2020-02-04 16:36:45.063  INFO 26264 --- [main] c.l.c.bbva.service.CompMassService       : Eliminados registros de TIC_COMPILACIONES_MASIVA
+2020-02-04 16:36:45.088  INFO 26264 --- [main] c.l.c.bbva.service.CompMassService       : Registros a TIC_COMPILACIONES_MASIVA
+2020-02-04 16:36:45.118  INFO 26264 --- [main] c.l.c.bbva.service.CompMassService       : Actualizando registros TIC_COMPILACIONES_MASIVA
+2020-02-04 16:36:45.135  INFO 26264 --- [main] c.l.c.bbva.service.CompMassService       : Actualizados registros TIC_COMPILACIONES_MASIVA
+2020-02-04 16:36:45.196  INFO 26264 --- [main] c.l.c.bbva.service.CompMassService       : Registros a TIC_COMPILACIONES_MASIVA
+2020-02-04 16:36:45.421  INFO 26264 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-02-04 16:36:45.430  INFO 26264 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:36:45.432  INFO 26264 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-02-04 16:36:45.432  INFO 26264 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-02-04 16:36:45.432  INFO 26264 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2020-02-04 16:36:45.432  INFO 26264 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-02-04 16:36:45.442  WARN 26264 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2020-02-04 16:36:45.442 ERROR 26264 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
 Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2020-02-03 15:42:02.714  WARN 20032 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
-2020-02-03 15:42:02.714 ERROR 20032 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+2020-02-04 16:36:45.442  WARN 26264 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 90121, SQLState: 90121
+2020-02-04 16:36:45.442 ERROR 26264 --- [SpringContextShutdownHook] o.h.engine.jdbc.spi.SqlExceptionHelper   : La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
 Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
-2020-02-03 15:42:02.715  WARN 20032 --- [SpringContextShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
-2020-02-03 15:42:02.716  INFO 20032 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
-2020-02-03 15:42:02.718  INFO 20032 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-02-03 15:42:02.737  INFO 20032 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
-2020-02-03 15:42:02.771  INFO 20032 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-02-04 16:36:45.442  WARN 26264 --- [SpringContextShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'entityManagerFactory': org.hibernate.exception.JDBCConnectionException: Unable to release JDBC Connection used for DDL execution
+2020-02-04 16:36:45.442  INFO 26264 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2020-02-04 16:36:45.452  INFO 26264 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2020-02-04 16:36:45.552  INFO 26264 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

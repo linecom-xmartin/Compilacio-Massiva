@@ -2,7 +2,10 @@ package com.linecom.compilacionmasiva.bbva.service;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -13,6 +16,7 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +29,7 @@ import com.linecom.compilacionmasiva.bbva.dao.DesGruposFuncPaqueteRepository;
 import com.linecom.compilacionmasiva.bbva.dao.DesPaqueteRepository;
 import com.linecom.compilacionmasiva.bbva.dao.TicCompilacionesMasivaRepository;
 import com.linecom.compilacionmasiva.bbva.dao.TicCompilacionesRepository;
+import com.linecom.compilacionmasiva.bbva.dao.TicFuentesEntornosRepository;
 import com.linecom.compilacionmasiva.bbva.dao.TicGruposFuncEntidadRepository;
 import com.linecom.compilacionmasiva.bbva.dao.TicPaquetesEntidadRepository;
 //import com.linecom.compilacionmasiva.bbva.dao.TicPaquetesEntidadRepository;
@@ -35,6 +40,7 @@ import com.linecom.compilacionmasiva.bbva.entity.DesPaquete;
 import com.linecom.compilacionmasiva.bbva.entity.TicCompilaciones;
 import com.linecom.compilacionmasiva.bbva.entity.TicCompilacionesId;
 import com.linecom.compilacionmasiva.bbva.entity.TicCompilacionesMasiva;
+import com.linecom.compilacionmasiva.bbva.entity.TicFuentesEntornos;
 import com.linecom.compilacionmasiva.bbva.entity.TicGruposFuncEntidad;
 import com.linecom.compilacionmasiva.bbva.entity.TicGruposFuncEntidadId;
 import com.linecom.compilacionmasiva.bbva.entity.TicPaquetesEntidad;
@@ -79,6 +85,9 @@ public class CompMassService {
 	
 	@Autowired
 	private TicGruposFuncEntidadRepository ticGruposFuncEntidadRepository;
+	
+	@Autowired
+	private TicFuentesEntornosRepository ticFuentesEntornosRepository;
 	
 	@Autowired
 	@Value("${usuario.filtro}")
@@ -237,7 +246,18 @@ public class CompMassService {
 		} else {
 			ticCompilacionesMasiva = ticCompilacionesMasivaRepository.findByResultadoCompilacion(new BigDecimal(resultatCompilacio));
 		}
-		
+		//Per afegir fichers prova
+//		List<TicFuentesEntornos> fuentes = ticFuentesEntornosRepository.findAll();
+//		try {
+//			byte[] testFile = Files.readAllBytes(Paths.get("C:/Users/xmartin/Documents/ficherFuente.txt"));
+//			for (TicFuentesEntornos fuente : fuentes) {
+//				fuente.setFuenteCbl(testFile);
+//				ticFuentesEntornosRepository.saveAndFlush(fuente);
+//			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		return ticCompilacionesMasiva;
 	}
 	
