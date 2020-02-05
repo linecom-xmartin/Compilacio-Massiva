@@ -150,7 +150,6 @@ public class ActualitzarProgramesController implements Initializable{
     			lblResultat.setText("Copiando datos...");
     		});
     		tascaActualitzarTicCompilacioMassiva.setOnSucceeded((e) -> {
-    			compMassService.carregarACompilacions();
     			actualitzarTaula();
     			lblResultat.setText("Se ha actualizado correctamente TIC_COMPILACIONES_MASIVA");
     			vBoxCenter.getChildren().remove(progress);
@@ -181,7 +180,6 @@ public class ActualitzarProgramesController implements Initializable{
     			lblResultat.setText("Copiando datos...");
     		});
     		tascaActualitzarTicCompilacio.setOnSucceeded((e) -> {
-    			compMassService.carregarACompilacions();
     			lblResultat.setText("Se ha actualizado correctamente TIC_COMPILACIONES");
     			vBoxCenter.getChildren().remove(progress);
     		});

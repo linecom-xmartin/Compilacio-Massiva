@@ -12,6 +12,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Comparator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -125,6 +127,7 @@ public class CompMassService {
 	public void carregarACompilacions() {
 		//Obtenim els valors de TIC_COMPILACIONES_MASIVA
 		List<TicCompilacionesMasiva> ticCompilacionesMasiva = ticCompilacionesMasivaRepository.findByResultadoCompilacion(new BigDecimal(0));
+		List<TicCompilaciones> ticCompilaciones = ticCompilacionesRepository.findAll();
 		//Només 1 per nombre_grupo_funcional
 		HashSet<String> nmsGrupFuncional = new HashSet<String>();
 		List<TicCompilaciones> ticCompilacionesMasivaAdaptat = new ArrayList<TicCompilaciones>();
@@ -148,15 +151,20 @@ public class CompMassService {
 					//Si no existeix
 					//	guardar
 					TicCompilacionesId id = ticComp.getTicCompilacionesId();
-					Optional<TicCompilaciones> resultat = ticCompilacionesRepository.findById(id);
-					if (resultat.isPresent()) {
-						if (ticComp.getVersion() != null && ticComp.getVersion().compareTo(resultat.get().getVersion()) == 0) {
-							if (ticComp.getRevision() == null || ticComp.getRevision().compareTo(resultat.get().getRevision()) >= 0) {
+					List<TicCompilaciones> ticCompilacionesById = ticCompilaciones.stream()
+						.filter(p -> p.getTicCompilacionesId().equals(id))
+						.sorted(Comparator.comparing(TicCompilaciones::getVersion).reversed().thenComparing(Comparator.comparing(TicCompilaciones::getRevision).reversed()))
+						.collect(Collectors.toList());
+//					Optional<TicCompilaciones> resultat = ticCompilacionesRepository.findById(id);
+					if (ticCompilacionesById != null && !ticCompilacionesById.isEmpty()) {
+						TicCompilaciones resultat = ticCompilacionesById.get(0);
+						if (ticComp.getVersion() != null && ticComp.getVersion().compareTo(resultat.getVersion()) == 0) {
+							if (ticComp.getRevision() == null || ticComp.getRevision().compareTo(resultat.getRevision()) >= 0) {
 								ticCompilacionesRepository.saveAndFlush(ticComp);	
 							} else {
 								continue;
 							}
-						} else if (ticComp.getVersion() == null || ticComp.getVersion().compareTo(resultat.get().getVersion()) > 0){
+						} else if (ticComp.getVersion() == null || ticComp.getVersion().compareTo(resultat.getVersion()) > 0){
 							ticCompilacionesRepository.saveAndFlush(ticComp);
 							LOG.debug("TIC_COMPILACIONES: " + ticComp.getTicCompilacionesId().getNombreGrupoFuncional() + " (UPDATE)");
 						} else {
@@ -207,13 +215,19 @@ public class CompMassService {
 		//Ara s'agafa el de versio i revisio mes alt
 		List<TicCompilacionesMasiva> ticCompilacionesMasiva = ticCompilacionesMasivaRepository.findAll();
 		List<TicCompilacionesMasiva> ticCompilacionesMasivaActualitzat = new ArrayList<TicCompilacionesMasiva>();
+		List<TicCompilaciones> ticCompilacionesAll = ticCompilacionesRepository.findAll();
 		LOG.info("Actualizando registros TIC_COMPILACIONES_MASIVA");
 		//Obtenim elements a actualitzar
 		for (TicCompilacionesMasiva ticCompilaMas : ticCompilacionesMasiva) {
-			List<TicCompilaciones> lstTicCompilaciones = ticCompilacionesRepository.findByNombreGrupoFuncionalAndVersionAndRevisionOrderByVersionDescAndRevisionDesc(
-				ticCompilaMas.getTicCompilacionesId().getNombreGrupoFuncional(), ticCompilaMas.getRevision(), ticCompilaMas.getVersion());
-			if (lstTicCompilaciones != null && !lstTicCompilaciones.isEmpty()) {
-				TicCompilaciones ticCompilaciones = lstTicCompilaciones.get(0);
+//			List<TicCompilaciones> lstTicCompilaciones = ticCompilacionesRepository.findByNombreGrupoFuncionalAndVersionAndRevisionOrderByVersionDescAndRevisionDesc(
+//				ticCompilaMas.getTicCompilacionesId().getNombreGrupoFuncional(), ticCompilaMas.getRevision(), ticCompilaMas.getVersion());
+			List<TicCompilaciones> ticCompilacionesById = ticCompilacionesAll.stream()
+					.filter(p -> p.getTicCompilacionesId().getNombreGrupoFuncional().equals(ticCompilaMas.getTicCompilacionesId().getNombreGrupoFuncional()) &&
+							p.getVersion().compareTo(ticCompilaMas.getVersion()) == 0  && p.getRevision().compareTo(ticCompilaMas.getRevision()) == 0)
+//					.sorted(Comparator.comparing(TicCompilaciones::getVersion).reversed().thenComparing(Comparator.comparing(TicCompilaciones::getRevision)))
+					.collect(Collectors.toList());
+			if (ticCompilacionesById != null && !ticCompilacionesById.isEmpty()) {
+				TicCompilaciones ticCompilaciones = ticCompilacionesById.get(0);
 				if(ticCompilaMas.getResultadoCompilacion().compareTo(ticCompilaciones.getResultadoCompilacion()) != 0) {
 					ticCompilaMas.setResultadoCompilacion(ticCompilaciones.getResultadoCompilacion());
 					ticCompilaMas.setFechaHoraUltimoEstado(ticCompilaciones.getFechaHoraUltimoEstado());

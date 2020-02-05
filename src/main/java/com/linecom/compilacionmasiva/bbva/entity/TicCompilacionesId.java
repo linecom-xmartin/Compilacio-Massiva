@@ -79,7 +79,7 @@ public class TicCompilacionesId implements Serializable {
 		if (entidad == null) {
 			if (other.entidad != null)
 				return false;
-		} else if (!entidad.equals(other.entidad))
+		} else if (!(entidad.compareTo(other.entidad) == 0))
 			return false;
 		if (entorno == null) {
 			if (other.entorno != null)
